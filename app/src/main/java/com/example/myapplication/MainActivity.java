@@ -11,8 +11,12 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
 
+
+public class MainActivity extends AppCompatActivity {
+    ListView listview;
+    TextView textView;
+    EditText editText;
  Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,20 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>
                 (this, android.R.layout.simple_list_item_1,students);
         listview.setAdapter(arrayAdapter);
+
+
+
+        editText=findViewById(R.id.editPersonName);
+        btn=findViewById(R.id.button);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name=editText.getText().toString();
+                students.add(name);
+                arrayAdapter.notifyDataSetChanged();
+            }
+        });
 
 
     }
